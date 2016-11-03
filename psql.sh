@@ -3,12 +3,12 @@
 # For PostgreSQL
 
 # Configuration #
-DBNAME=ktucec
-USERNAME=cec
+DBNAME=testdb
+USERNAME=testuser
 HOST=localhost
 SQL_FILENAME=db_backup.sql
 JSON_FILENAME=db_backup.json
-APP_DIR=/var/www/vhost/cec.unicrow.com  # The probe will not be the slash
+APP_DIR=/var/www/vhost/test.unicrow.com  # The probe will not be the slash
 #################
 
 
