@@ -6,7 +6,7 @@ git clone https://github.com/unicrow/unicrowbackup.git
 cd unicrowbackup
 ```
 
-## **APP Directory**
+## **App Directory**
 ```
 Test
 |
