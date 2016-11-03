@@ -1,9 +1,30 @@
-# Unicrow Backup
-For Django
+# **Unicrow Backup**
+**For Django**
 
 ```
 git clone https://github.com/unicrow/unicrowbackup.git
 cd unicrowbackup
+```
+
+## **APP Directory**
+```
+Test
+|
+|-------backup
+|       |
+|       |-------backup.sh
+|       |-------compressed/
+|       |-------uncompressed/
+|
+|-------web
+        |
+        |-------env/      (virtualenv=Python, Django ...)
+        |-------source/   (Source Code)
+                |
+                |-------manage.py   
+                |-------media/      (Media Directory)
+                |-------...
+                |-------...
 ```
 
 ## **PostgreSQL**
