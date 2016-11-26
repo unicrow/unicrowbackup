@@ -33,7 +33,7 @@ Test
 ```
 touch ~/.pgpass
 chmod 0600 ~/.pgpass
-echo "server:port:database:username:password" >> .pgpass 
+echo "server:port:database:username:password" >> .pgpass
 (server=localhost, port=5432, database=testdb, username=testuser, password=testtest)
 ```
 
@@ -45,7 +45,7 @@ USERNAME=testuser
 HOST=localhost
 SQL_FILENAME=db_backup.sql
 JSON_FILENAME=db_backup.json
-APP_DIR=/var/www/vhost/test.unicrow.com  # The probe will not be the slash
+APP_DIR=/var/www/vhost/test.unicrow.com  # Do not use slash at the end
 #################
 ```
 
@@ -64,7 +64,7 @@ USERNAME=testuser
 PASSWORD=testtest
 SQL_FILENAME=db_backup.sql
 JSON_FILENAME=db_backup.json
-APP_DIR=/var/www/vhost/test.unicrow.com  # The probe will not be the slash
+APP_DIR=/var/www/vhost/test.unicrow.com  # Do not use slash at the end
 #################
 ```
 
@@ -78,4 +78,3 @@ bash mysql.sh
 ```
 00 1 * * 6 /bin/bash /var/www/vhost/test.unicrow.com/backup/backup.sh > /dev/null 2>&1
 ```
-

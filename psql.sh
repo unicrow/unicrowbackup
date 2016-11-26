@@ -8,7 +8,7 @@ USERNAME=testuser
 HOST=localhost
 SQL_FILENAME=db_backup.sql
 JSON_FILENAME=db_backup.json
-APP_DIR=/var/www/vhost/test.unicrow.com  # The probe will not be the slash
+APP_DIR=/var/www/vhost/test.unicrow.com  # Do not use slash at the end
 #################
 
 
