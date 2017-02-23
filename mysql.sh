@@ -4,11 +4,13 @@
 
 # Configuration #
 DBNAME=testdb
-USERNAME=testuser
+USERNAME=test
 PASSWORD=testtest
 SQL_FILENAME=db_backup.sql
 JSON_FILENAME=db_backup.json
-APP_DIR=/var/www/vhost/test.unicrow.com  # Do not use slash at the end
+APP_DIR=/home/apps/test/vhosts/test.unicrow.com  # Do not use slash at the end
+MEDIA_DIR=/home/apps/test/vhosts/test.unicrow.com/source/media
+BACKUP_DIR=/home/apps/test                       # Do not use slash at the end
 #################
 
 
@@ -24,14 +26,23 @@ echo -e -n """\033[0;96m
 echo -en "\nControl File"
 BACKUP_ERROR=false
 BACKUP_NAME=$(date +"%d.%m.%Y")
-BACKUP_LOGFILE=$APP_DIR/backup/uncompressed/$BACKUP_NAME/backup.log
+BACKUP_LOGFILE=$BACKUP_DIR/backup/uncompressed/$BACKUP_NAME/backup.log
 
 {
-  cd $APP_DIR >/dev/null 2>&1
+  ls $APP_DIR >/dev/null 2>&1
 } || {
   echo -en "\n* \033[0;31m$APP_DIR not found!\033[0;97m"
   BACKUP_ERROR=true
 }
+
+{
+  ls $BACKUP_DIR >/dev/null 2>&1
+  cd $BACKUP_DIR
+} || {
+  echo -en "\n* \033[0;31m$BACKUP_DIR not found!\033[0;97m"
+  BACKUP_ERROR=true
+}
+
 
 if [ $BACKUP_ERROR == false ]; then
   {
@@ -92,7 +103,7 @@ fi
 # MEDIA
 if [ $BACKUP_ERROR == false ]; then
   {
-    cp -R $APP_DIR/web/source/media/ . >> $BACKUP_LOGFILE && echo -en "\n* \033[0;32mmedia\033[0;97m"
+    cp -R $MEDIA_DIR . >> $BACKUP_LOGFILE && echo -en "\n* \033[0;32mmedia\033[0;97m"
   } || {
     echo -en "\n* \033[0;31mmedia\033[0;97m"
     BACKUP_ERROR=true
@@ -105,7 +116,7 @@ fi
 if [ $BACKUP_ERROR == false ]; then
   echo -en "\n\nCompress"
   {
-    cd $APP_DIR/backup/uncompressed/ >> $BACKUP_LOGFILE &&
+    cd $BACKUP_DIR/backup/uncompressed/ >> $BACKUP_LOGFILE &&
     zip -r ../compressed/$BACKUP_NAME.zip $BACKUP_NAME/ >> $BACKUP_LOGFILE &&
     echo -en "\n* \033[0;32mcompleted\033[0;97m"
   } || {
@@ -121,7 +132,7 @@ if [ $BACKUP_ERROR == false ]; then
 else
   echo -en "\n\n\033[0;31mBackup Error!\033[0;97m"
   echo -en "\n\033[0;33mNote: Check Configuration\033[0;97m\n\n"
-  cd $APP_DIR/backup >/dev/null 2>&1
+  cd $BACKUP_DIR/backup >/dev/null 2>&1
   rm -r uncompressed/$BACKUP_NAME >/dev/null 2>&1
   rm -r compressed/$BACKUP_NAME.zip >/dev/null 2>&1
 fi

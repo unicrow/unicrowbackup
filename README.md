@@ -41,11 +41,13 @@ echo "server:port:database:username:password" >> .pgpass
 ```
 # Configuration #
 DBNAME=testdb
-USERNAME=testuser
+USERNAME=test
 HOST=localhost
 SQL_FILENAME=db_backup.sql
 JSON_FILENAME=db_backup.json
-APP_DIR=/var/www/vhost/test.unicrow.com  # Do not use slash at the end
+APP_DIR=/home/apps/test/vhosts/test.unicrow.com  # Do not use slash at the end
+MEDIA_DIR=/home/apps/test/vhosts/test.unicrow.com/source/media
+BACKUP_DIR=/home/apps/test                       # Do not use slash at the end
 #################
 ```
 
@@ -60,11 +62,13 @@ bash psql.sh
 ```
 # Configuration #
 DBNAME=testdb
-USERNAME=testuser
+USERNAME=test
 PASSWORD=testtest
 SQL_FILENAME=db_backup.sql
 JSON_FILENAME=db_backup.json
-APP_DIR=/var/www/vhost/test.unicrow.com  # Do not use slash at the end
+APP_DIR=/home/apps/test/vhosts/test.unicrow.com  # Do not use slash at the end
+MEDIA_DIR=/home/apps/test/vhosts/test.unicrow.com/source/media
+BACKUP_DIR=/home/apps/test                       # Do not use slash at the end
 #################
 ```
 
